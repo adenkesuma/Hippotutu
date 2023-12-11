@@ -4,6 +4,7 @@ import { ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useQuery } from '@tanstack/react-query'
 import { z } from 'zod'
 
 import { Button, buttonVariants } from '@/components/ui/button'
@@ -12,6 +13,7 @@ import { Label } from '@/components/ui/label'
 import { Input } from '@/components/ui/input'
 import { cn } from '@/lib/utils'
 import { AuthCredentialsValidator, TAuthCredentialsValidator } from '@/lib/validators/account-credentials-validator'
+import { trpc } from '@/trpc/client'
 
 const Page = () => {
   const { 
@@ -21,6 +23,9 @@ const Page = () => {
   } = useForm<TAuthCredentialsValidator>({
     resolver: zodResolver(AuthCredentialsValidator)
   })
+
+  const { data } = trpc.authRouter.useQuery()
+  console.log(data)
 
   const onSubmit = ({ email, password } : TAuthCredentialsValidator) => {
     // send data to the server
