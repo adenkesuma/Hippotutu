@@ -7,7 +7,11 @@ import { trpc } from "@/trpc/client"
 import { Loader2, XCircle } from "lucide-react"
 import { buttonVariants } from "./ui/button"
 
-const VerifyEmail = ({ token } : { token: string }) => {
+interface VerifyEmailProps {
+  token: string
+}
+
+const VerifyEmail = ({ token } : VerifyEmailProps) => {
   const { data, isLoading, isError } = trpc.auth.verifyEmail.useQuery({
     token
   })
