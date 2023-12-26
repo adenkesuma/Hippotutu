@@ -7,7 +7,7 @@ interface VerifyEmailProps {
   }
 }
 
-const VerifyEmailPage = ({ searchParams } : VerifyEmailProps) => {
+const Page = ({ searchParams } : VerifyEmailProps) => {
   const token = searchParams.token
   const toEmail = searchParams.to
 
@@ -48,4 +48,4 @@ const VerifyEmailPage = ({ searchParams } : VerifyEmailProps) => {
   )
 }
 
-export default VerifyEmailPage
+export default Page
